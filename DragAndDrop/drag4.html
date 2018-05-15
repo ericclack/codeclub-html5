@@ -1,7 +1,7 @@
 <html>
     <head>
         <style>
-         div.box {
+         div.drag {
              position: relative;
              float: left;
              border: 1px solid black;
@@ -23,31 +23,19 @@
         </style>
     </head>
     <body>
-        <div id="drag1" class="box"
-             draggable="true"
-             ondragstart="dragging(event)">
+        <div id="drag1" class="drag">
             Drag me 1
         </div>
 
-        <div id="drag2" class="box"
-             draggable="true"
-             ondragstart="dragging(event)">
+        <div id="drag2" class="drag">
             Drag me 2
         </div>
 
-        <div id="drag3" class="box"
-             draggable="true"
-             ondragstart="dragging(event)">
+        <div id="drag3" class="drag">
             Drag me 3
         </div>
         
-        <div id="nodrag2" class="box">
-            Can't drag me
-        </div>
-        
-        <div id="drag4" class="box"
-             draggable="true"
-             ondragstart="dragging(event)">
+        <div id="drag4" class="drag">
             Drag me 4
         </div>
 
@@ -57,26 +45,9 @@
             Drop things here
         </div>
         
+        <script src="drag.js"></script>
         <script>
-         function allowDrop(event) {
-             event.preventDefault();
-         }
-         
-         function dragging(event) {
-             event.dataTransfer.setData("text", event.target.id)
-         }
-
-         function dropped(event) {
-             var id = event.dataTransfer.getData("text");
-             var elt = document.getElementById(id);
-             event.target.appendChild(elt);
-             elt.style.position = "absolute";
-             elt.style.left = event.offsetX;
-             elt.style.top = event.offsetY;
-             
-             console.log(event);
-             console.log(elt);
-         }
+          makeDraggable("drag");
         </script>
     </body>
 </html>

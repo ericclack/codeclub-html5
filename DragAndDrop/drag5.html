@@ -1,7 +1,7 @@
 <html>
     <head>
         <style>
-         div.box {
+         div.drag {
              position: relative;
              float: left;
              border: 1px solid black;
@@ -23,31 +23,19 @@
         </style>
     </head>
     <body>
-        <div id="drag3" class="box"
-             draggable="true"
-             ondragstart="dragging(event)">
+        <div id="drag3" class="drag">
             llamo
         </div>
 
-        <div id="drag2" class="box"
-             draggable="true"
-             ondragstart="dragging(event)">
+        <div id="drag2" class="drag">
             me
         </div>
 
-        <div id="drag1" class="box"
-             draggable="true"
-             ondragstart="dragging(event)">
+        <div id="drag1" class="drag">
             Hola
         </div>
         
-        <div id="nodrag2" class="box">
-            Can't drag me
-        </div>
-        
-        <div id="drag4" class="box"
-             draggable="true"
-             ondragstart="dragging(event)">
+        <div id="drag4" class="drag">
             Eric
         </div>
 
@@ -59,24 +47,10 @@
 
         <button type="button" onclick="checkit()">Check it!</button>
         
+        <script src="drag.js"></script>
         <script>
-         function allowDrop(event) {
-             event.preventDefault();
-         }
-         
-         function dragging(event) {
-             event.dataTransfer.setData("text", event.target.id)
-         }
-
-         function dropped(event) {
-             var id = event.dataTransfer.getData("text");
-             var elt = document.getElementById(id);
-             event.target.appendChild(elt);
-             elt.style.position = "absolute";
-             elt.style.left = event.offsetX;
-             elt.style.top = event.offsetY;
-         }
-
+         makeDraggable("drag");
+            
          function checkit() {
              // Are the elements in the right order?
              // If they are, their x pos will increase as
@@ -84,6 +58,7 @@
              var elts = ['drag1', 'drag2', 'drag3', 'drag4'];
              var xpositions = elts.map( (elt) => parseInt(document.getElementById(elt).style.left) );
              console.log(xpositions);
+
              var lastx = 0;
              var correct = true;
              xpositions.forEach(function(x) {
@@ -92,6 +67,7 @@
                  }
                  lastx = x;
              });
+             
              if (correct) {
                  alert("Well done! You got it right");
              }
