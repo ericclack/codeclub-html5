@@ -1,31 +1,34 @@
 <html>
-  <head>
-    <style>
-      div.box {
-      position: absolute;
-      border: 1px solid black;
-      padding: 1em;
-      background-color: #ddd;
-      width: auto;
-      }
-    </style>
+    <head>
+        <style>
+         div.box {
+             position: absolute;
+             border: 1px solid black;
+             padding: 1em;
+             background-color: #ddd;
+             width: auto;
+         }
+        </style>
+    </head>
     <body>
-      <div id="drag1" class="box" draggable="true">
-        Drag me
-      </div>
-
-      <div id="nodrag2" class="box" style="left: 200;">
-        Can't drag me
-      </div>
-      <script>
-        function dropped(event) {
-        console.log(event);
-        div = event.target;
-        div.style.left = event.x;
-        div.style.top = event.y;
-        }
-
-        document.getElementById("drag1").ondragend = dropped;
-    </script>
+        <div id="drag1" class="box"
+             draggable="true"
+             ondragend="dropped(event)">
+            Drag me
+        </div>
+        
+        <div id="nodrag2" class="box" style="left: 200;">
+            Can't drag me
+        </div>
+        <script>
+         function dropped(event) {
+             div = event.target;
+             // Move the element to this position
+             div.style.left = event.x;
+             div.style.top = event.y;
+             // You can browse the event in the console:
+             console.log(event);
+         }
+        </script>
     </body>
 </html>
