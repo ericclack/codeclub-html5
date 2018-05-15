@@ -13,4 +13,4 @@ HTML and just enough JavaScript to form the start of a drag-and-drop word sortin
 
 ## Comments, suggestions?
 
-Leave an [issue](Issues).
+Leave a comment on the [project issues page](https://github.com/ericclack/codeclub-html5/issues).
