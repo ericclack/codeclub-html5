@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <style>
+         div.box {
+             position: relative;
+             float: left;
+             border: 1px solid black;
+             padding: 1em;
+             margin-right: 1em;
+             background-color: #ddd;
+             width: auto;
+         }
+
+         div.dropzone {
+             position: absolute;
+             bottom: 5em;
+             width: 95%;
+             height: 4em;
+             padding: 1em;
+             border: 1px solid black;
+             background-color: yellow;
+         }
+        </style>
+    </head>
+    <body>
+        <div id="drag1" class="box"
+             draggable="true"
+             ondragstart="dragging(event)">
+            Drag me 1
+        </div>
+
+        <div id="drag2" class="box"
+             draggable="true"
+             ondragstart="dragging(event)">
+            Drag me 2
+        </div>
+
+        <div id="drag3" class="box"
+             draggable="true"
+             ondragstart="dragging(event)">
+            Drag me 3
+        </div>
+        
+        <div id="nodrag2" class="box">
+            Can't drag me
+        </div>
+        
+        <div id="drag4" class="box"
+             draggable="true"
+             ondragstart="dragging(event)">
+            Drag me 4
+        </div>
+
+        <div id="dropzone" class="dropzone"
+             ondragover="allowDrop(event)"
+             ondrop="dropped(event)">
+            Drop things here
+        </div>
+        
+        <script>
+         function allowDrop(event) {
+             event.preventDefault();
+         }
+         
+         function dragging(event) {
+             event.dataTransfer.setData("text", event.target.id)
+         }
+
+         function dropped(event) {
+             var id = event.dataTransfer.getData("text");
+             var elt = document.getElementById(id);
+             event.target.appendChild(elt);
+             elt.style.position = "absolute";
+             elt.style.left = event.offsetX;
+             elt.style.top = event.offsetY;
+             
+             console.log(event);
+             console.log(elt);
+         }
+        </script>
+    </body>
+</html>

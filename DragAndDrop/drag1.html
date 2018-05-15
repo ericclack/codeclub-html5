@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <style>
+      div.box {
+      position: absolute;
+      border: 1px solid black;
+      padding: 1em;
+      background-color: #ddd;
+      width: auto;
+      }
+    </style>
+    
+    <script>
+      function speak() {
+      alert("Hello!");
+      }
+    </script>
+    
+  </head>
+  <body>
+    <div id="drag1" class="box" draggable="true">
+      Drag me
+    </div>
+    
+    <div id="nodrag2" class="box" style="left: 200;" onclick="speak();">
+      Can't drag me
+    </div>
+  </body>
+</html>

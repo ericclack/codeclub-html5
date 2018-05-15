@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <style>
+      div.box {
+      position: absolute;
+      border: 1px solid black;
+      padding: 1em;
+      background-color: #ddd;
+      width: auto;
+      }
+    </style>
+    <body>
+      <div id="drag1" class="box" draggable="true">
+        Drag me
+      </div>
+
+      <div id="nodrag2" class="box" style="left: 200;">
+        Can't drag me
+      </div>
+      <script>
+        function dropped(event) {
+        console.log(event);
+        div = event.target;
+        div.style.left = event.x;
+        div.style.top = event.y;
+        }
+
+        document.getElementById("drag1").ondragend = dropped;
+    </script>
+    </body>
+</html>
